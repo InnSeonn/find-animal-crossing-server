@@ -15,7 +15,7 @@ const app = express();
 const port = 8080;
 
 //나와 닮은 조건에 해당하는 주민 가져오기
-app.get('/villagers/feature', async (req, res) => {
+app.get('/api/villagers/feature', async (req, res) => {
   const { gender, personality, species } = req.query;
 
   try {
@@ -49,12 +49,12 @@ app.get('/villagers/feature', async (req, res) => {
 });
 
 //주민 종류 가져오기
-app.get('/villagers/species', async (req, res) => {
+app.get('/api/villagers/species', async (req, res) => {
   res.send(['새', '다람쥐', '돼지', '고릴라', '악어', '코알라', '독수리', '개미핥기', '소', '쥐', '고양이', '말', '햄스터', '캥거루', '늑대', '펭귄', '닭', '코끼리', '코뿔소', '양', '사슴', '호랑이', '꼬마곰', '개', '곰', '하마', '오리', '염소', '타조', '토끼', '사자', '개구리', '문어', '원숭이'])
 })
 
 //주민 성격 가져오기
-app.get('/villagers/personality', async (req, res) => {
+app.get('/api/villagers/personality', async (req, res) => {
   res.send(['운동광', '무뚝뚝', '아이돌', '단순활발', '먹보', '친절함', '성숙함', '느끼함']);
 })
 

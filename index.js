@@ -1,10 +1,12 @@
 const admin = require('firebase-admin');
 const express = require('express');
+const path = require('path');
 
 admin.initializeApp({
   credential: admin.credential.cert({
     projectId: process.env.PROJECT_ID,
     privateKey: process.env.PRIVATE_KEY,
+    clientEmail: process.env.CLIENT_EMAIL,
   }),
 });
 const db = admin.firestore();
@@ -56,15 +58,15 @@ app.get('/villagers/personality', async (req, res) => {
   res.send(['운동광', '무뚝뚝', '아이돌', '단순활발', '먹보', '친절함', '성숙함', '느끼함']);
 })
 
-app.use(express.json());
-app.listen(port, () => {
-  console.log(`listening to ${port}`);
-});
-
-app.use(express.static('public'))
-
 app.get('/', (req, res) => {
   res.sendFile('index.html', {root: path.join(__dirname, 'public')});
 })
+
+app.use(express.json());
+app.use(express.static('public'))
+
+app.listen(port, () => {
+  console.log(`listening to ${port}`);
+});
 
 module.exports = app;
